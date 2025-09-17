@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "eu-central-1"
+  region = "us-west-1"
 }
 
 module "vpc" {
@@ -10,14 +10,14 @@ module "vpc" {
 
 module "security_group" {
   source        = "./modules/security_group"
-  sg_name       = "web-sg"
+  sg_name       = "vibin-sg"
   vpc_id        = module.vpc.vpc_id
   ingress_ports = [22, 80, 443]
 }
 
 module "ec2" {
   source        = "./modules/ec2"
-  ami_id        = "ami-0444794b421ec32e4" 
+  ami_id        = "ami-00142eb1747a493d9" 
   instance_type = "t2.micro"
   subnet_id     = module.vpc.subnet_id
   sg_id         = module.security_group.sg_id
