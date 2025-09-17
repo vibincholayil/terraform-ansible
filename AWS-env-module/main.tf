@@ -17,7 +17,7 @@ module "security_group" {
 
 module "ec2" {
   source        = "./modules/ec2"
-  ami_id        = "ami-0444794b421ec32e4"
+  ami_id        = "ami-0444794b421ec32e4" 
   instance_type = "t2.micro"
   subnet_id     = module.vpc.subnet_id
   sg_id         = module.security_group.sg_id
