@@ -1,0 +1,49 @@
+---
+- name: Configure EC2 instance
+  hosts: webservers
+  become: yes
+  vars:
+    ssh_public_key_path: "~/.ssh/myfirstkeypair.pub"   # Replace with your public key path
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Install required packages
+      apt:
+        name:
+          - nginx
+          - git
+          - htop
+          - curl
+        state: present
+
+    - name: Create a new user
+      user:
+        name: vibin
+        shell: /bin/bash
+        create_home: yes
+        state: present
+
+    - name: Add user to sudoers
+      lineinfile:
+        path: /etc/sudoers
+        state: present
+        regexp: '^vibin'
+        line: 'vibin ALL=(ALL) NOPASSWD:ALL'
+
+    - name: Create .ssh directory for new user
+      file:
+        path: /home/vibin/.ssh
+        state: directory
+        owner: vibin
+        group: vibin
+        mode: '0700'
+
+    - name: Add SSH public key to authorized_keys
+      copy:
+        src: "{{ ssh_public_key_path }}"
+        dest: /home/vibin/.ssh/authorized_keys
+        owner: vibin
+        group: vibin
+        mode: '0600'

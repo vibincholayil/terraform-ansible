@@ -2,6 +2,12 @@ provider "aws" {
   region = "us-west-1"
 }
 
+resource "aws_key_pair" "my_key" {
+  key_name   = "my-ec2-key"  
+  public_key = file("/home/vibin/.ssh/id_rsa.pub")
+}
+
+
 module "vpc" {
   source      = "./modules/vpc"
   cidr_block  = "10.0.0.0/16"
@@ -21,4 +27,6 @@ module "ec2" {
   instance_type = "t2.micro"
   subnet_id     = module.vpc.subnet_id
   sg_id         = module.security_group.sg_id
+  key_name      = aws_key_pair.my_key.key_name
+  Name          = "MyEC2"
 }
