@@ -1,0 +1,28 @@
+---
+- name: Configure EC2 instance
+  hosts: ec2
+  become: yes
+  tasks:
+
+    - name: Update all packages
+      ansible.builtin.dnf:
+        name: '*'
+        state: latest
+        update_cache: yes
+
+    - name: Install Nginx
+      ansible.builtin.dnf:    
+        name: nginx
+        state: present
+
+    - name: Install Git
+      ansible.builtin.dnf:
+        name:
+          - git
+        state: present
+
+    - name: Create new user vibin
+      ansible.builtin.user:
+        name: vibin
+        shell: /bin/bash
+        create_home: yes
