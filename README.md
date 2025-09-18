@@ -50,12 +50,12 @@ so install ansible -y
 generate and copy the ssh key to the ec2 server
 ssh-keygen -t ed25519
 ssh-copy-id i ~/vibin/.ssh/id_ed25519 18.144.169.161
-![keygen](https://github.com/vibincholayil/terraform-ansible-project/blob/master/images/ss_2_2.png)
+![keygen](https://github.com/vibincholayil/terraform-ansible-project/blob/master/images/ss_2_1.png)
 created a inventry.ini file in the ansible server and provide the host ip
 check it can connect or not.
-![ping](https://github.com/vibincholayil/terraform-ansible-project/blob/master/images/ss_2_3.png)
+![ping](https://github.com/vibincholayil/terraform-ansible-project/blob/master/images/ss_2_2.png)
 
-
+after confirming the connection is working i create a ansible playbook in the ansible server called setup-ec2 and mentioned install nginx, git and add my name as a user
 1. **Install packages using Ansible**
    - Nginx
    - Git
