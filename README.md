@@ -20,7 +20,9 @@ This usecase demonstrates how to provision an AWS environment using **Terraform*
 
 - **Actions Performed:**
   - Provision the resources using Terraform
+  ![Provision the resources using Terraform](https://github.com/vibincholayil/terraform-ansible-project/blob/master/images/ss_1_1.png)
   - Destroy all resources when no longer needed
+  ![Destroy all resources when no longer needed](https://github.com/vibincholayil/terraform-ansible-project/blob/master/images/ss_1_2.png)
 
 ---
 
