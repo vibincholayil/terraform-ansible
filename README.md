@@ -42,20 +42,23 @@ This usecase demonstrates how to provision an AWS environment using **Terraform*
   - Make infrastructure scalable and maintainable
 
 For experimenting the ansible i have created my linux server as my ansible server and the new ec2 insted created as my ansible host server
-so i have installed ansible in my own linux system 
+so i have installed ansible in my own linux system Ansible install on master server: 
 
 sudo apt update
 so install ansible -y
+ansible --version: ansible 2.9.6
+
 
 generate and copy the ssh key to the ec2 server
 ssh-keygen -t ed25519
 ssh-copy-id i ~/vibin/.ssh/id_ed25519 18.144.169.161
 ![keygen](https://github.com/vibincholayil/terraform-ansible-project/blob/master/images/ss_2_1.png)
 created a inventry.ini file in the ansible server and provide the host ip
+enter to ec2 server without password
+
 check it can connect or not.
 ![ping](https://github.com/vibincholayil/terraform-ansible-project/blob/master/images/ss_2_2.png)
 
-after confirming the connection is working i create a ansible playbook in the ansible server called setup-ec2 and mentioned install nginx, git and add my name as a user
 1. **Install packages using Ansible**
    - Nginx
    - Git
@@ -65,20 +68,26 @@ after confirming the connection is working i create a ansible playbook in the an
    - Ensures a home directory is created
    - Assigns `/bin/bash` as the default shell
 
+
+after confirming the connection is working i create a ansible playbook in the ansible server called setup-ec2 and mentioned install nginx, git and add Create new user 'vibin'
+![playbook](https://github.com/vibincholayil/terraform-ansible-project/blob/master/images/ss_2_3.png)
+
+
+
+
 ---
 
 ## Project Structure
 
 
 
-Ansible install on master server: 
+
 sudo apt update
 sudo apt install ansible
 ssh enable:
 creaste keypair: ssh-keygen -t ed25519
 ssh copy id: ssh-copy-id -i /home/vibin/.ssh/id_ed25519.pub ec2-user@18.144.169.161
-enter to ec2 server without password: ssh ec2-user@18.144.169.161
-ansible --version: ansible 2.9.6
+ ssh ec2-user@18.144.169.161
 
 created inventory file: with the server ip
 
