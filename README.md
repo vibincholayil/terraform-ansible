@@ -1,7 +1,4 @@
 # AWS Environment Provisioning and Configuration with Terraform & Ansible
-
-## Usecase Overview
-
 This usecase demonstrates how to provision an AWS environment using **Terraform** and configure it using **Ansible**.  
 
 ---
