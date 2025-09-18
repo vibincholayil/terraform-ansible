@@ -10,19 +10,19 @@
         state: latest
         update_cache: yes
 
-    - name: Install Nginx
-      ansible.builtin.dnf:    
-        name: nginx
-        state: present
-
-    - name: Install Git
+    - name: nginx, git install
       ansible.builtin.dnf:
         name:
+          - nginx
           - git
         state: present
+
+
 
     - name: Create new user vibin
       ansible.builtin.user:
         name: vibin
         shell: /bin/bash
-        create_home: yes
+
+
+
