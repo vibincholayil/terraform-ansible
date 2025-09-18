@@ -1,2 +1,0 @@
-[webservers]
-ec2_instance ansible_host={{ lookup('env','EC2_PUBLIC_IP') }} ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/myfirstkeypair.pem
