@@ -6,7 +6,7 @@ This usecase demonstrates how to provision an AWS environment using **Terraform*
 
 ---
 
-## Part 1: Provision AWS Resources Using Terraform
+## Part 1: Provision AWS Resources Using Terraform (AWS-environment)
 
 - **Resources Created:**
   - A **VPC**
@@ -26,7 +26,7 @@ This usecase demonstrates how to provision an AWS environment using **Terraform*
 
 ---
 
-## Part 2: Modular Terraform Code and Configuration with Ansible
+## Part 2: Modular Terraform Code and Configuration with Ansible (AWS-env-module)
 
 - Created reusable modules for:
   - **VPC**
@@ -40,6 +40,20 @@ This usecase demonstrates how to provision an AWS environment using **Terraform*
 - **Objective:**
   - Reduce code duplication
   - Make infrastructure scalable and maintainable
+
+For experimenting the ansible i have created my linux server as my ansible server and the new ec2 insted created as my ansible host server
+so i have installed ansible in my own linux system 
+
+sudo apt update
+so install ansible -y
+
+generate and copy the ssh key to the ec2 server
+ssh-keygen -t ed25519
+ssh-copy-id i ~/vibin/.ssh/id_ed25519 18.144.169.161
+![keygen](https://github.com/vibincholayil/terraform-ansible-project/blob/master/images/ss_2_2.png)
+created a inventry.ini file in the ansible server and provide the host ip
+check it can connect or not.
+![ping](https://github.com/vibincholayil/terraform-ansible-project/blob/master/images/ss_2_3.png)
 
 
 1. **Install packages using Ansible**
