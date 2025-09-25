@@ -7,7 +7,7 @@ provider "azurerm" {
 # Resource Group
 # -----------------------
 resource "azurerm_resource_group" "rg-team-a1" {
-  name     = "tf-rg"
+  name     = "team-a-rg"
   location = "East US"
 
   tags = {
@@ -21,7 +21,7 @@ resource "azurerm_resource_group" "rg-team-a1" {
 # Virtual Network
 # -----------------------
 resource "azurerm_virtual_network" "vnet" {
-  name                = "tf-vnet"
+  name                = "team-a-vnet"
   address_space       = ["10.0.0.0/16"]
   location            = azurerm_resource_group.rg-team-a1.location
   resource_group_name = azurerm_resource_group.rg-team-a1.name
@@ -38,7 +38,7 @@ resource "azurerm_virtual_network" "vnet" {
 # -----------------------
 
 resource "azurerm_subnet" "subnet" {
-  name                 = "tf-subnet"
+  name                 = "team-a-subnet"
   resource_group_name  = azurerm_resource_group.rg-team-a1.name
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = ["10.0.1.0/24"]
@@ -80,7 +80,7 @@ variable "nsg_rules" {
 }
 
 resource "azurerm_network_security_group" "nsg" {
-  name                = "tf-nsg"
+  name                = "team-a-nsg"
   location            = azurerm_resource_group.rg-team-a1.location
   resource_group_name = azurerm_resource_group.rg-team-a1.name
 
@@ -110,7 +110,7 @@ resource "azurerm_network_security_group" "nsg" {
 # Public IP
 # -----------------------
 resource "azurerm_public_ip" "vm_ip" {
-  name                = "tf-vm-ip"
+  name                = "team-a-vm-ip"
   resource_group_name = azurerm_resource_group.rg-team-a1.name
   location            = azurerm_resource_group.rg-team-a1.location
   allocation_method   = "Static"
@@ -121,7 +121,7 @@ resource "azurerm_public_ip" "vm_ip" {
 # NIC
 # -----------------------
 resource "azurerm_network_interface" "nic" {
-  name                = "tf-nic"
+  name                = "team-a-nic"
   location            = azurerm_resource_group.rg-team-a1.location
   resource_group_name = azurerm_resource_group.rg-team-a1.name
 
@@ -144,7 +144,7 @@ resource "azurerm_network_interface" "nic" {
 # Linux VM
 # -----------------------
 resource "azurerm_linux_virtual_machine" "vm" {
-  name                = "tf-vm"
+  name                = "team-a-vm"
   resource_group_name = azurerm_resource_group.rg-team-a1.name
   location            = azurerm_resource_group.rg-team-a1.location
   size                = "Standard_B1s"
