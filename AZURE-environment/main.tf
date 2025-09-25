@@ -6,7 +6,7 @@ provider "azurerm" {
 # -----------------------
 # Resource Group
 # -----------------------
-resource "azurerm_resource_group" "rg-team-a" {
+resource "azurerm_resource_group" "rg-team-a1" {
   name     = "tf-rg"
   location = "East US"
 
@@ -23,8 +23,8 @@ resource "azurerm_resource_group" "rg-team-a" {
 resource "azurerm_virtual_network" "vnet" {
   name                = "tf-vnet"
   address_space       = ["10.0.0.0/16"]
-  location            = azurerm_resource_group.rg-team-a.location
-  resource_group_name = azurerm_resource_group.rg-team-a.name
+  location            = azurerm_resource_group.rg-team-a1.location
+  resource_group_name = azurerm_resource_group.rg-team-a1.name
 
   tags = {
     Env      = "Dev"
@@ -39,7 +39,7 @@ resource "azurerm_virtual_network" "vnet" {
 
 resource "azurerm_subnet" "subnet" {
   name                 = "tf-subnet"
-  resource_group_name  = azurerm_resource_group.rg-team-a.name
+  resource_group_name  = azurerm_resource_group.rg-team-a1.name
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = ["10.0.1.0/24"]
 }
@@ -81,8 +81,8 @@ variable "nsg_rules" {
 
 resource "azurerm_network_security_group" "nsg" {
   name                = "tf-nsg"
-  location            = azurerm_resource_group.rg-team-a.location
-  resource_group_name = azurerm_resource_group.rg-team-a.name
+  location            = azurerm_resource_group.rg-team-a1.location
+  resource_group_name = azurerm_resource_group.rg-team-a1.name
 
   dynamic "security_rule" {
     for_each = var.nsg_rules
@@ -111,8 +111,8 @@ resource "azurerm_network_security_group" "nsg" {
 # -----------------------
 resource "azurerm_public_ip" "vm_ip" {
   name                = "tf-vm-ip"
-  resource_group_name = azurerm_resource_group.rg-team-a.name
-  location            = azurerm_resource_group.rg-team-a.location
+  resource_group_name = azurerm_resource_group.rg-team-a1.name
+  location            = azurerm_resource_group.rg-team-a1.location
   allocation_method   = "Static"
   sku                 = "Standard"
 }
@@ -122,8 +122,8 @@ resource "azurerm_public_ip" "vm_ip" {
 # -----------------------
 resource "azurerm_network_interface" "nic" {
   name                = "tf-nic"
-  location            = azurerm_resource_group.rg-team-a.location
-  resource_group_name = azurerm_resource_group.rg-team-a.name
+  location            = azurerm_resource_group.rg-team-a1.location
+  resource_group_name = azurerm_resource_group.rg-team-a1.name
 
   ip_configuration {
     name                          = "internal"
@@ -145,8 +145,8 @@ resource "azurerm_network_interface" "nic" {
 # -----------------------
 resource "azurerm_linux_virtual_machine" "vm" {
   name                = "tf-vm"
-  resource_group_name = azurerm_resource_group.rg-team-a.name
-  location            = azurerm_resource_group.rg-team-a.location
+  resource_group_name = azurerm_resource_group.rg-team-a1.name
+  location            = azurerm_resource_group.rg-team-a1.location
   size                = "Standard_B1s"
   admin_username      = "azureuser"
 
