@@ -1,5 +1,3 @@
-
-
 provider "azurerm" {
   features        = {}
   tenant_id       = "2b32b1fa-7899-482e-a6de-be99c0ff5516"
