@@ -80,6 +80,47 @@ After confirming connectivity, I created an Ansible playbook (setup-ec2.yml) tha
 Example playbook execution:
   ![playbook](https://github.com/vibincholayil/terraform-ansible-project/blob/master/images/ss_2_3.png)  
 
+
+# Azure Infrastructure Provisioning & Configuration with Terraform & Ansible   
+This project demonstrates how to **provision an Azure environment using Terraform** and then **configure the deployed VM using Ansible**.  
+
+## Infrastructure Provisioned with Terraform  
+- **Resource Group** → `team-a-rg`  
+- **Virtual Network (VNet)** → `team-a-vnet (10.0.0.0/16)`  
+- **Subnet** → `team-a-subnet (10.0.1.0/24)`  
+- **Network Security Group (NSG)** → Allows **SSH (22)** & **HTTP (80)**  
+- **Public IP** → Static allocation for VM  
+- **Network Interface (NIC)** → Connected to Subnet + Public IP  
+- **Linux Virtual Machine** → Ubuntu 20.04 LTS (`Standard_B1s`)  
+  - Admin user: `azureuser`  
+  - SSH Key Authentication enabled  
+  - Canonical Ubuntu Image  
+
+### Terraform Outputs  
+- **Private IP** of VM  
+- **Public IP** of VM  
+- **VNet ID**  
+
+## Configuration with Ansible  
+After Terraform provisions the VM, Ansible connects over SSH and configures it:  
+
+### Playbook: **User Management**  
+- Creates a new user **Team-A** with:  
+  - Home directory  
+  - Bash shell  
+
+### Playbook: **Package Installation**  
+- Updates package cache  
+- Installs common packages:  
+  - `nginx` (web server)  
+  - `git` (version control)  
+  - `htop` (process monitoring)  
+  - `curl` (network tool)  
+
+![ping](https://github.com/vibincholayil/terraform-ansible-project/blob/master/images/az_tf_1.png)  
+![ping](https://github.com/vibincholayil/terraform-ansible-project/blob/master/images/az_tf_2.png)  
+
+
 ## Conclusion  
 
 This usecase successfully demonstrates the end-to-end process of provisioning and configuring an AWS environment using **Terraform** and **Ansible**.  
