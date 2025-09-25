@@ -1,4 +1,5 @@
 # AWS Environment Provisioning and Configuration with Terraform & Ansible
+  ![aws_az1](https://github.com/vibincholayil/terraform-ansible-project/blob/master/images/aws_az1.png) 
 This project demonstrates how to provision an AWS environment using **Terraform** and configure it using **Ansible**.  
   ![tf_an](https://github.com/vibincholayil/terraform-ansible-project/blob/master/images/tf_an.png)  
 ---
