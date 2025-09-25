@@ -1,13 +1,17 @@
 ---
-- name: Configure Azure VM
-  hosts: azure_vms
+- name: Install packages on Azure VM
+  hosts: azure_vm
   become: yes
+
   tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
     - name: Install Nginx
       apt:
         name: nginx
         state: present
-        update_cache: yes
 
     - name: Install Git
       apt:
@@ -19,13 +23,7 @@
         name: htop
         state: present
 
-    - name: Install Curl
+    - name: Install curl
       apt:
         name: curl
         state: present
-
-    - name: Create a new user Vibin
-      user:
-        name: vibin_new
-        shell: /bin/bash
-        create_home: yes
