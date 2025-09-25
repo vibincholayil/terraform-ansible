@@ -1,6 +1,6 @@
 # AWS Environment Provisioning and Configuration with Terraform & Ansible
 This project demonstrates how to provision an AWS environment using **Terraform** and configure it using **Ansible**.  
-
+  ![tf_an](https://github.com/vibincholayil/terraform-ansible-project/blob/master/images/tf_an.png)  
 ---
 
 ## Part 1: Provision AWS Resources Using Terraform (`AWS-environment`)
