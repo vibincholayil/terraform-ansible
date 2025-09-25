@@ -86,21 +86,32 @@ resource "azurerm_linux_virtual_machine" "main" {
   location            = var.location
   size                = "Standard_B1s"
   admin_username      = var.vm_admin_username
-  admin_password      = var.vm_admin_password
   network_interface_ids = [
     azurerm_network_interface.main.id
   ]
+
+  disable_password_authentication = true
+
+  # SSH Key
+  admin_ssh_key {
+    username   = var.vm_admin_username
+    public_key = file("~/.ssh/azure_id_rsa.pub")
+  }
+
   os_disk {
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
   }
+
   source_image_reference {
     publisher = "Canonical"
     offer     = "UbuntuServer"
     sku       = "22.04-LTS"
     version   = "latest"
   }
-  computer_name  = "vm-team-a"
+
+  computer_name = "vm-team-a"
+
   tags = {
     Env      = "Dev"
     costPlan = "1y"
